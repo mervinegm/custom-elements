@@ -580,6 +580,10 @@ var _titulo = require("./Components/titulo/titulo");
 var _body = require("./Components/body/body");
 var _subtitulo = require("./Components/subtitulo/subtitulo");
 var _bodyContainer = require("./Components/body-container/body-container");
+var _fieldset = require("./Components/fieldset/fieldset");
+var _button = require("./Components/button/button");
+var _outlined = require("./Components/outlined/outlined");
+var _footer = require("./Components/footer/footer");
 function main() {
     (0, _header.init)();
     (0, _large.init)();
@@ -587,10 +591,14 @@ function main() {
     (0, _body.init)();
     (0, _subtitulo.init)();
     (0, _bodyContainer.init)();
+    (0, _fieldset.init)();
+    (0, _button.init)();
+    (0, _outlined.init)();
+    (0, _footer.init)();
 }
 main();
 
-},{"./Components/header/header":"iCwr1","./Components/large/large":"1iu8o","./Components/titulo/titulo":"6WyVM","./Components/body/body":"l4BJj","./Components/subtitulo/subtitulo":"cVRz5","./Components/body-container/body-container":"3clc9"}],"iCwr1":[function(require,module,exports) {
+},{"./Components/header/header":"iCwr1","./Components/large/large":"1iu8o","./Components/titulo/titulo":"6WyVM","./Components/body/body":"l4BJj","./Components/subtitulo/subtitulo":"cVRz5","./Components/body-container/body-container":"3clc9","./Components/button/button":"hcygX","./Components/outlined/outlined":"jQNlh","./Components/footer/footer":"l7AOw","./Components/fieldset/fieldset":"l9btl"}],"iCwr1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "init", ()=>init);
@@ -826,23 +834,190 @@ function init() {
             style.textContent = `
                       .bodyContainer{
                           width: auto;
-                          margin: 0 10px 0 10px;
-                          padding: 0 10px 0 10px;
+                          max-width: 600px;
+                          margin: 0 20px;
+                      }
+                    
+                      @media (min-width: 600px){
+                        .bodyContainer{
+                          margin: 0 auto;
+                      }
                       }
                       `;
             shadow.appendChild(style);
-            /*       if (this.children) {
-        for (var i of this.children) {
-          console.log(i);
-          bodyContainerEl.appendChild(i);
-        }
-      } */ for (var i of this.children)if (i) {
+            if (this.children) for (var i of this.children){
                 console.log(i);
-                bodyContainerEl.appendChild(i);
+                bodyContainerEl.appendChild(i.cloneNode(true));
             }
         }
     }
     customElements.define("mi-bodycontainer", BodyContainer);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hcygX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "init", ()=>init);
+function init() {
+    class Button extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            var shadow = this.attachShadow({
+                mode: "open"
+            });
+            const textoOriginal = this.getAttribute("aria-label");
+            var buttonEL = document.createElement("button");
+            buttonEL.classList.add("button");
+            buttonEL.textContent = textoOriginal;
+            shadow.appendChild(buttonEL);
+            var style = document.createElement("style");
+            style.textContent = `
+                    .button{
+                      Width: calc(100% - 10px);
+                      Height: 55px;
+                      background-color: turquoise;
+                      margin-top: 20px;
+                      border: none;
+                    }
+                    `;
+            shadow.appendChild(style);
+            if (this.children[0]) buttonEL.appendChild(this.children[0]);
+        }
+    }
+    customElements.define("mi-button", Button);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jQNlh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "init", ()=>init);
+function init() {
+    class Outlined extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            var shadow = this.attachShadow({
+                mode: "open"
+            });
+            const textoOriginal = this.getAttribute("aria-label");
+            var outlinedEl = document.createElement("button");
+            outlinedEl.classList.add("outlined");
+            outlinedEl.textContent = textoOriginal;
+            shadow.appendChild(outlinedEl);
+            var style = document.createElement("style");
+            style.textContent = `
+                      .outlined{
+                        Width: calc(100% - 10px);;
+                        Height: 55px;
+                        background-color: beige;
+                        margin-top: 60px;
+                        border: solid 2px black;
+                      }
+                      `;
+            shadow.appendChild(style);
+            if (this.children[0]) outlinedEl.appendChild(this.children[0]);
+        }
+    }
+    customElements.define("mi-outlined", Outlined);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l7AOw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "init", ()=>init);
+function init() {
+    class Footer extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            var shadow = this.attachShadow({
+                mode: "open"
+            });
+            var footerDivEl = document.createElement("div");
+            footerDivEl.classList.add("footer");
+            shadow.appendChild(footerDivEl);
+            var style = document.createElement("style");
+            style.textContent = `
+                .footer{
+                  width: auto;
+                  height: 233px;
+                  background-color: cadetblue;
+                  margin: 0;
+                  padding: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-top:50px
+                }
+                `;
+            shadow.appendChild(style);
+            if (this.children[0]) footerDivEl.appendChild(this.children[0]);
+        }
+    }
+    customElements.define("mi-footer", Footer);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l9btl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "init", ()=>init);
+function init() {
+    class Fieldset extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            var shadow = this.attachShadow({
+                mode: "open"
+            });
+            const label = this.getAttribute("aria-label");
+            var fieldsetEl = document.createElement("div");
+            fieldsetEl.classList.add("fieldset");
+            shadow.appendChild(fieldsetEl);
+            var style = document.createElement("style");
+            style.textContent = `
+                      .fieldset{
+                        display: flex;
+                        flex-direction: column;
+                        Width: calc(100% - 40px);
+                        Height: 80px;
+                        margin-top: 20px;
+                      }
+
+                      .label{
+                        font-size: 18px;
+                        font-family: "Roboto";
+                        font-weight: 400;
+                      }
+
+                      .input{
+                        width: 100%;
+                        height: 55px;
+                        padding: 17px 13px;
+                        font-size: 18px;
+                        font-family: "Roboto";
+                        font-weight: 400;
+                        margin-top: 4px;
+                        border: solid 2px;
+                        border-radius: 4px;
+                      }
+                      `;
+            shadow.appendChild(style);
+            fieldsetEl.innerHTML = `
+      <label class="label" for="Nombre">${label}</label>
+      <input class="input" type="text" placeholder="Ingrese su ${label}">
+      `;
+        }
+    }
+    customElements.define("mi-fieldset", Fieldset);
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["bf3Nq","h7u1C"], "h7u1C", "parcelRequire182f")

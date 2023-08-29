@@ -16,23 +16,22 @@ export function init() {
       style.textContent = `
                       .bodyContainer{
                           width: auto;
-                          margin: 0 10px 0 10px;
-                          padding: 0 10px 0 10px;
+                          max-width: 600px;
+                          margin: 0 20px;
+                      }
+                    
+                      @media (min-width: 600px){
+                        .bodyContainer{
+                          margin: 0 auto;
+                      }
                       }
                       `;
       shadow.appendChild(style);
 
-      /*       if (this.children) {
+      if (this.children) {
         for (var i of this.children) {
           console.log(i);
-          bodyContainerEl.appendChild(i);
-        }
-      } */
-
-      for (var i of this.children) {
-        if (i) {
-          console.log(i);
-          bodyContainerEl.appendChild(i);
+          bodyContainerEl.appendChild(i.cloneNode(true));
         }
       }
     }
